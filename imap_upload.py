@@ -616,7 +616,7 @@ def get_delivery_time(self, fields):
 # as a method.
 # I want to use the factory parameter of mailbox.mbox()
 # but it seems not to work in Python 2.5.4.
-mailbox.mboxMessage.get_delivery_time = get_delivery_time
+mailbox.MaildirMessage.get_delivery_time = get_delivery_time
 
 
 class IMAPUploader:
@@ -774,7 +774,7 @@ def main(args=None):
 
             if(not recurse):
                 # Prepare source and error mbox
-                src = mailbox.mbox(src, create=False)
+                src = mailbox.Maildir(src, create=False)
                 if err:
                     err = mailbox.mbox(err)
                 upload(uploader, options["box"], src, err, time_fields, google_takeout, google_takeout_first_label,
